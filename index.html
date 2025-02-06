@@ -41,7 +41,8 @@
       // Create a point geometry
       const point = {
         type: "point",
-        longitude: -89.2182,    //long lat of Southern Illinois University
+        // long lat of Southern Illinois University
+        longitude: -89.2182,
         latitude: 37.7273
       };
 
@@ -50,10 +51,11 @@
         type: "simple-marker",
         style: "x",
         color: [144, 26, 30], // SIU maroon color
-        outline: {
-          color: [255, 255, 255], // White color
-          width: 1
-        }
+        /* removed due to style "x" not having an outline
+        * outline: {
+        *  color: [255, 255, 255], // White color
+        *  width: 1
+        */}
       };
 
       // Create a popup template
