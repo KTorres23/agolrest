@@ -1,2 +1,2 @@
-# esrijs
-My first Esri JS Map
+# agol
+JS-only Full Stack lab
