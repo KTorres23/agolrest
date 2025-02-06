@@ -51,12 +51,51 @@
         type: "simple-marker",
         style: "x",
         color: [144, 26, 30], // SIU maroon color
-        /* removed due to style "x" not having an outline
+        /* removed due to style "x"
         * outline: {
         *  color: [255, 255, 255], // White color
         *  width: 1
         * }
         */
+      };
+
+
+      // Add a polygon geometry
+      const polygon = {
+        type: "polygon",
+        rings: [
+        [-89.217418, 37.719528],
+         [-89.213007, 37.701960], 
+         [-89.237382, 37.701428],
+         [-89.237307, 37.715388]
+        ]
+      };
+
+      // Add a polyline geometry
+      const polyline = {
+        type: "polyline",
+        paths: [
+         [-89.221516, 37.717124],
+         [-89.220812, 37.712972], 
+         [-89.224395, 37.711514]
+        ]
+      };
+
+      // Create a symbol for the polyline graphic
+      const simpleLineSymbol = {
+        type: "simple-line",
+        color: [226, 119, 40], // SIU orange color
+        width: 2
+      };
+
+      // Createa a symbol for the polygon graphic
+      const simpleFillSymbol = {
+        type: "simple-fill",
+        color: [227, 139, 79, 0.8], // SIU orange color with 80% transparency
+        outline: {
+          color: [255, 255, 255],
+          width: 1
+        }
       };
 
       // Create a popup template
@@ -81,8 +120,24 @@
         popupTemplate: popupTemplate
       });
 
-      // Add the point graphic to map
-        graphicsLayer.add(pointGraphic);
+      // Create the polyline graphic
+      const polylineGraphic = new Graphic({
+        geometry: polyline,
+        symbol: simpleLineSymbol
+      });
+
+      // Create the polygon graphic
+      const polygonGraphic = new Graphic({
+        geometry: polygon,
+        symbol: simpleFillSymbol
+      });
+
+      // Add the graphics to map
+        graphicsLayer.addMany(
+          [pointGraphic],
+          [polylineGraphic],
+          [polygonGraphic]
+        );
 
     
 
