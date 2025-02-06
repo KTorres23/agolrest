@@ -42,8 +42,8 @@
       const point = {
         type: "point",
         // long lat of Southern Illinois University
-        longitude: -89.2182,
-        latitude: 37.7273
+        longitude: -89.219939,
+        latitude: 37.715167
       };
 
       // Create a symbol for the point graphic
@@ -75,16 +75,16 @@
       const polyline = {
         type: "polyline",
         paths: [
-         [-89.221516, 37.717124],
-         [-89.220812, 37.712972], 
-         [-89.224395, 37.711514]
+        [-89.225186, 37.710209],
+        [-89.222726, 37.711939],
+        [-89.215366, 37.714028]
         ]
       };
 
       // Create a symbol for the polyline graphic
       const simpleLineSymbol = {
         type: "simple-line",
-        color: [226, 119, 40], // SIU orange color
+        color: [0, 0, 0], // Black color
         width: 2
       };
 
@@ -106,8 +106,8 @@
 
       // Create a popup attribute
       const attributes = {
-        title: "SIU",
-        content: "Southern Illinois University campus"
+        Name: "SIU",
+        Description: "Southern Illinois University campus"
       };
 
       // Create the point graphic
@@ -143,9 +143,6 @@
           [polygonGraphic]
         );
         */
-
-    
-
 
     });
   </script>
