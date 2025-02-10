@@ -137,7 +137,11 @@
       const popupEduUSA = {
         "title": "</b>{INSTNM}<br>",
         // add a hyperlink to the popup
-        "content": "<a href='WEBADDR' target='WEBADDR'>Visit the website!</a><br><b>\nTotal Enrollment:</b> {INSTSIZE}<br>"
+        "content": "Come visit us in {CITY}, {STABBR}!<br>" +
+        "<a href='{WEBADDR}' target='_blank'>Visit the website!</a><br>" +
+        "<b>Total Enrollment:</b> {INSTSIZE}<br>" +
+        // add an if statement to the popup
+        "{% if LANDGRNT == TRUE %}We are a land grant institution!{% } else { %}{% } %}"
       };
 
       // Add a feature layer
@@ -147,7 +151,7 @@
         width: 5,
 
         // Add popup
-        outFields: ["INSTNM","INSTSIZE"],
+        outFields: ["INSTNM","INSTSIZE", "CITY", "STABBR", "WEBADDR", "LANDGRNT"],
         popupTemplate: popupEduUSA
       
       });
