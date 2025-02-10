@@ -139,7 +139,7 @@
       });
 
       
-      USAParks.load().then(function() {
+      USAedu.load().then(function() {
       console.log("FeatureLayer loaded successfully");
     }).catch(function(error) {
       console.error("Error loading FeatureLayer: ", error);
@@ -151,6 +151,12 @@
       const USAParks = new FeatureLayer({
         url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Detailed_Parks/FeatureServer"
       });
+
+      USAParks.load().then(function() {
+      console.log("FeatureLayer loaded successfully");
+    }).catch(function(error) {
+      console.error("Error loading FeatureLayer: ", error);
+    });
 
       map.add(USAParks);
       
