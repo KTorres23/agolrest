@@ -19,14 +19,17 @@
     "esri/views/MapView",   
     "esri/Graphic",  
     "esri/layers/GraphicsLayer",
-    "esri/layers/FeatureLayer"   
-  
-  ], function(esriConfig,Map, MapView, Graphic, GraphicsLayer, FeatureLayer) {
+    "esri/layers/FeatureLayer",
+    "esri/layers/SimpleRenderer",
+    "esri/symbols/PictureMarkerSymbol"
+    ],
+    function(esriConfig,Map, MapView, Graphic, GraphicsLayer,
+              FeatureLayer, SimpleRenderer, PictureMarkerSymbol) {
 
       esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurDKwg_xacEwEedlXdUDyJ7P-7Qbg6QwjB-VtI5cUmAZMi_mWKOS0Vo0J49DRO-0J1pP0__52Rw9RjcLIXbVib3NGIPqd05v5bJLJV72gKKaZ9YkXNs7vzI0H2rf2ZDaRG0YJIXAI9DX-3IngC9SL_rzfc3EVbzlgr9obb-jV-Uwz063O_Kvrm2St2D_Eay2k0CwVj5Jd4vRShs708LiyuLs.AT1_UdS3K7WT";
       const map = new Map({
         basemap: "arcgis-topographic" // Basemap layer
-      });
+  });
 
       const view = new MapView({
           map: map,
@@ -169,9 +172,26 @@
       // Add the feature layer to the map
       map.add(USAeduLayer);
 
+
+      // Create a renderer for the airport layer
+      const airportRenderer = {
+        "type": "simple",
+        "symbol": {
+          "type": "picture-marker",
+          "url": "https://github.com/KTorres23/agol/blob/main/local_airport_24dp_5F6368.png",
+          "width": "18px",
+          "height": "18px"
+        }
+      }
+
+      // NEED TO REMOVE ONE OF TWO AIRPORT LAYERS
+
+
+
       // professors airport layer
       const airportLayer = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/US_Airports/FeatureServer",
+        renderer: airportRenderer
       });
 
       airportLayer.load().then(function() {
@@ -180,7 +200,7 @@
       console.error("Error loading FeatureLayer: ", error);
     });
 
-      // Create the Airports layer
+      // Create Airports layer from my AGOL
       const myairportLayer = new FeatureLayer({
         url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Airports/FeatureServer",
       });
@@ -195,6 +215,10 @@
       map.add(myairportLayer);
       map.add(airportLayer);
       
+
+
+
+
 
     });
   </script>
