@@ -134,7 +134,7 @@
       
     
       // Create a popup template for feature layer
-      const popupTemplateFeature = {
+      const popupEduUSA = {
         "title": "EDUs",
         "content": "<b>Name:</b> {NAME}<br><b>Total Enrollment:</b> {TOT_ENROLL}<br>"
       };
@@ -145,9 +145,15 @@
       
         // Add popup
         outFields: ["NAME","TOT_ENROLL"],
-        popupTemplateFeature: USAeduLayer
+        popupTemplate: popupEduUSA
       
       });
+
+      USAeduLayer.load().then(function() {
+      console.log("FeatureLayer loaded successfully");
+    }).catch(function(error) {
+      console.error("Error loading FeatureLayer: ", error);
+    });
 
       // Add the feature layer to the map
       map.add(USAeduLayer);
