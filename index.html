@@ -140,7 +140,7 @@
         "expressionInfos": [{
           "name": "landGrantStatus",
           "title": "Land Grant Status",
-          "expression": "IIf($feature.LANDGRNT == 'TRUE', 'We are a land grant institution!', '')"
+          "expression": "IIf($feature.LANDGRNT == 1, 'We are a land grant institution!', '')"
         }],
 
         "content": "{expression/landGrantStatus}<br>" +
