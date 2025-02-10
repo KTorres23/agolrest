@@ -181,13 +181,18 @@
     });
 
       // Create the Airports layer
-      /* my url
-      const airportLayer = new FeatureLayer({
+      const myairportLayer = new FeatureLayer({
         url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Airports/FeatureServer",
       });
-      */
+
+      myairportLayer.load().then(function() {
+      console.log("FeatureLayer loaded successfully");
+    }).catch(function(error) {
+      console.error("Error loading FeatureLayer: ", error);
+    });
+
       // Add the Airports layer to the map
-      map.add(airportLayer);
+      map.add(myairportLayer);
       
 
     });
