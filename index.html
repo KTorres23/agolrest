@@ -135,14 +135,17 @@
     
       // Create a popup template for feature layer
       const popupEduUSA = {
-        "title": "EDUs",
-        "content": "<b>Name:</b> {INSTNM}<br><b>Total Enrollment:</b> {INSTSIZE}<br>"
+        "title": "</b>{INSTNM}<br>",
+        // add a hyperlink to the popup
+        "content": "<a href='WEBADDR' target='WEBADDR'>Visit the website!</a><br><b>\nTotal Enrollment:</b> {INSTSIZE}<br>"
       };
 
       // Add a feature layer
       const USAeduLayer = new FeatureLayer({
         url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer",
-      
+        
+        width: 5,
+
         // Add popup
         outFields: ["INSTNM","INSTSIZE"],
         popupTemplate: popupEduUSA
