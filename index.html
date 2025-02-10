@@ -212,6 +212,24 @@
         labelingInfo: [airportLabels]
       });
 
+      // create renderer for heliport layer
+      const heliportRenderer = {
+        "type": "simple",
+        "symbol": {
+          "type": "picture-marker",
+          "url": "helicopter_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png",
+          "width": "18px",
+          "height": "18px"
+        }
+      }
+
+      const heliportLayer = new FeatureLayer({
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/US_Airports/FeatureServer",
+        renderer: heliportRenderer,
+        definitionExpression: "Fac_Type = 'HELIPORT'",
+        //labelingInfo: [airportLabels]
+      });
+
       airportLayer.load().then(function() {
       console.log("FeatureLayer loaded successfully");
     }).catch(function(error) {
@@ -235,6 +253,7 @@
       */
 
       map.add(airportLayer);
+      map.add(heliportLayer);
       
 
 
