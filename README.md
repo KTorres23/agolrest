@@ -1,5 +1,4 @@
 # agol
-JS-only Full Stack lab
+JS-only Full Stack lab - complete
 
-* Next step: Part 4 
 * https://ktorres23.github.io/agol/
