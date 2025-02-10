@@ -168,6 +168,15 @@
 
       // Add the feature layer to the map
       map.add(USAeduLayer);
+
+
+      // Create the Airports layer
+      const airportLayer = new FeatureLayer({
+        url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Airports/FeatureServer",
+      });
+
+      // Add the Airports layer to the map
+      map.add(airportLayer);
       
 
     });
