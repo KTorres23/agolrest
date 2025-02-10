@@ -18,9 +18,10 @@
     "esri/Map",  
     "esri/views/MapView",   
     "esri/Graphic",  
-    "esri/layers/GraphicsLayer"   
+    "esri/layers/GraphicsLayer",
+    "esri/layers/FeatureLayer"   
   
-  ], function(esriConfig,Map, MapView, Graphic, GraphicsLayer) {
+  ], function(esriConfig,Map, MapView, Graphic, GraphicsLayer, FeatureLayer) {
 
       esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurDKwg_xacEwEedlXdUDyJ7P-7Qbg6QwjB-VtI5cUmAZMi_mWKOS0Vo0J49DRO-0J1pP0__52Rw9RjcLIXbVib3NGIPqd05v5bJLJV72gKKaZ9YkXNs7vzI0H2rf2ZDaRG0YJIXAI9DX-3IngC9SL_rzfc3EVbzlgr9obb-jV-Uwz063O_Kvrm2St2D_Eay2k0CwVj5Jd4vRShs708LiyuLs.AT1_UdS3K7WT";
       const map = new Map({
@@ -51,12 +52,6 @@
         type: "simple-marker",
         style: "square",
         color: [144, 26, 30], // SIU maroon color
-        /* removed due to style "x"
-        * outline: {
-        *  color: [255, 255, 255], // White color
-        *  width: 1
-        * }
-        */
       };
 
 
@@ -137,13 +132,25 @@
       graphicsLayer.add(pointGraphic);
       graphicsLayer.add(polylineGraphic);
       
-      /*
-        graphicsLayer.addMany(
-          [pointGraphic],
-          [polylineGraphic],
-          [polygonGraphic]
-        );
-        */
+      
+      // Add a feature layer
+      const USAParks = new FeatureLayer({
+        url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Detailed_Parks/FeatureServer"
+      });
+
+      USAParks.load().then(function() {
+      console.log("FeatureLayer loaded successfully");
+    }).catch(function(error) {
+      console.error("Error loading FeatureLayer: ", error);
+    });
+
+
+
+      
+
+      // Add the feature layer to the map
+      map.add(USAParks);
+      
 
     });
   </script>
