@@ -132,33 +132,25 @@
       graphicsLayer.add(pointGraphic);
       graphicsLayer.add(polylineGraphic);
       
-      
-      // Add a feature layer
-      const USAedu = new FeatureLayer({
-        url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer"
-      });
+    
+      // Create a popup template for feature layer
+      const popupTemplateFeature = {
+        "title": "EDUs",
+        "content": "<b>Name:</b> {NAME}<br><b>Total Enrollment:</b> {TOT_ENROLL}<br>"
+      };
 
+      // Add a feature layer
+      const USAeduLayer = new FeatureLayer({
+        url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer",
       
-      USAedu.load().then(function() {
-      console.log("FeatureLayer loaded successfully");
-    }).catch(function(error) {
-      console.error("Error loading FeatureLayer: ", error);
-    });
+        // Add popup
+        outFields: ["NAME","TOT_ENROLL"],
+        popupTemplateFeature: USAeduLayer
+      
+      });
 
       // Add the feature layer to the map
-      map.add(USAedu);
-
-      const USAParks = new FeatureLayer({
-        url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Detailed_Parks/FeatureServer"
-      });
-
-      USAParks.load().then(function() {
-      console.log("FeatureLayer loaded successfully");
-    }).catch(function(error) {
-      console.error("Error loading FeatureLayer: ", error);
-    });
-
-      map.add(USAParks);
+      map.add(USAeduLayer);
       
 
     });
