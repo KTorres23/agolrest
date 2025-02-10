@@ -136,17 +136,17 @@
       // Create a popup template for feature layer
       const popupEduUSA = {
         "title": "<b>{INSTNM}</b><br>",
-        // add a hyperlink to the popup
-        "content": "{expression/landGrantStatus}<br>" +
-        "Come visit us in {CITY}, {STABBR}!<br>" +
-        "<a href='{WEBADDR}' target='_blank'>Visit the website!</a><br>" +
-        "<b>Total Enrollment:</b> {INSTSIZE}<br>",
 
         "expressionInfos": [{
           "name": "landGrantStatus",
           "title": "Land Grant Status",
           "expression": "IIf($feature.LANDGRNT == 'TRUE', 'We are a land grant institution!', '')"
-        }]
+        }],
+
+        "content": "{expression/landGrantStatus}<br>" +
+        "Come visit us in {CITY}, {STABBR}!<br>" +
+        "<a href='{WEBADDR}' target='_blank'>Visit the website!</a><br>" +
+        "<b>Total Enrollment:</b> {INSTSIZE}<br>"
 
       };
 
