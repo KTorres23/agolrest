@@ -136,6 +136,40 @@
       graphicsLayer.add(polylineGraphic);
       
     
+      // create a renderer for the edu feature layer
+      const eduRenderer = {
+        type: "simple",
+        symbol: {
+          type: "simple-marker",
+          style: "circle",
+          color: "blue",
+          size: "8px",  // pixels
+          outline: { 
+            color: [255, 255, 255],
+            width: 1  // points
+          }
+        }
+      }
+
+      const eduLabels = {
+        symbol: {
+          type: "text",
+          color: "#FFFFFF",
+          haloColor: "#0000FF",
+          haloSize: "2px",
+          font: {
+            size: "12px",
+            family: "Noto Sans",
+            style: "italic",
+            weight: "normal"
+          }
+        },
+        labelPlacement: "above-center",
+        labelExpressionInfo: {
+          expression: "$feature.Fac_Name"
+        }
+      };
+
       // Create a popup template for feature layer
       const popupEduUSA = {
         "title": "<b>{INSTNM}</b><br>",
@@ -156,6 +190,9 @@
       // Add a feature layer
       const USAeduLayer = new FeatureLayer({
         url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer",
+
+        labelExpressionInfo: [eduLabels],
+        renderer: eduRenderer,
 
         // Add popup
         outFields: ["INSTNM","INSTSIZE", "CITY", "STABBR", "WEBADDR", "LANDGRNT"],
@@ -227,7 +264,7 @@
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/US_Airports/FeatureServer",
         renderer: heliportRenderer,
         definitionExpression: "Fac_Type = 'HELIPORT'",
-        //labelingInfo: [airportLabels]
+        labelingInfo: [airportLabels]
       });
 
       airportLayer.load().then(function() {
