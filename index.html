@@ -20,11 +20,12 @@
     "esri/Graphic",  
     "esri/layers/GraphicsLayer",
     "esri/layers/FeatureLayer",
+    "esri/widgets/Editor",
     "esri/renderers/SimpleRenderer",
     "esri/symbols/PictureMarkerSymbol"
     ],
     function(esriConfig,Map, MapView, Graphic, GraphicsLayer,
-              FeatureLayer, SimpleRenderer, PictureMarkerSymbol) {
+              FeatureLayer, Editor, SimpleRenderer, PictureMarkerSymbol) {
 
       esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurDKwg_xacEwEedlXdUDyJ7P-7Qbg6QwjB-VtI5cUmAZMi_mWKOS0Vo0J49DRO-0J1pP0__52Rw9RjcLIXbVib3NGIPqd05v5bJLJV72gKKaZ9YkXNs7vzI0H2rf2ZDaRG0YJIXAI9DX-3IngC9SL_rzfc3EVbzlgr9obb-jV-Uwz063O_Kvrm2St2D_Eay2k0CwVj5Jd4vRShs708LiyuLs.AT1_UdS3K7WT";
       const map = new Map({
@@ -275,7 +276,32 @@
 
       map.add(airportLayer);
       map.add(heliportLayer);
+
+
+      // Create the new airport layer
+      const newAirports = new FeatureLayer({
+        url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/New_Airports/FeatureServer",
+        outFields: ["AirportCode"],
+        
+      });
       
+      // Add the new airport layer to the map
+      map.add(newAirports);
+
+      // Set the point layer's LayerInfo
+      const pointInfos = {
+        layer: newAirports
+      }
+
+      // Begin Editor constructor
+      const editor = new Editor({
+        view: view,
+        layerInfos: [pointInfos]
+      }); // End Editor constructor
+
+      // Add the widget to the view
+      view.ui.add(editor, "top-right");
+
 
     });
   </script>
