@@ -364,7 +364,7 @@
       // Begin Editor constructor
       const editor = new Editor({
         view: view,
-        layerInfos: [pointInfos]
+        layerInfos: pointInfos
       }); // End Editor constructor
 
       // Add the widget to the view
@@ -373,6 +373,7 @@
       // Add legend widget
       const legend = new Legend({
         view: view,
+        style: "classic",
         layerInfos: [{
           layer: USAeduLayer,
           title: "Colleges and Universities"
@@ -384,8 +385,7 @@
         {
           layer: newAirports,
           title: "New Airports"
-        }],
-        style: "card"
+        }]
       });
 
       view.ui.add(legend, "bottom-right");
