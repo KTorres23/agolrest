@@ -39,6 +39,9 @@
           container: "viewDiv" // Div element
         });
 
+
+      // Create some graphics -------------------------------------------
+
       // Add a graphics layer
       const graphicsLayer = new GraphicsLayer();
       map.add(graphicsLayer);
@@ -57,7 +60,6 @@
         style: "square",
         color: [144, 26, 30], // SIU maroon color
       };
-
 
       // Add a polygon geometry
       const polygon = {
@@ -136,7 +138,10 @@
       graphicsLayer.add(pointGraphic);
       graphicsLayer.add(polylineGraphic);
       
+
     
+      // Create the colleges layer -------------------------------------------
+
       // create a renderer for the edu feature layer
       const eduRenderer = {
         type: "simple",
@@ -211,6 +216,9 @@
       map.add(USAeduLayer);
 
 
+
+      // Create the airport layer -------------------------------------------
+
       // Create a renderer for the airport layer
       const airportRenderer = {
         "type": "simple",
@@ -250,6 +258,10 @@
         labelingInfo: [airportLabels]
       });
 
+
+
+      // Create the heliport layer -------------------------------------------
+
       // create renderer for heliport layer
       const heliportRenderer = {
         "type": "simple",
@@ -269,8 +281,8 @@
       });
 
       airportLayer.load().then(function() {
-      console.log("FeatureLayer loaded successfully");
-    }).catch(function(error) {
+        console.log("FeatureLayer loaded successfully");
+      }).catch(function(error) {
       console.error("Error loading FeatureLayer: ", error);
     });
 
@@ -278,11 +290,46 @@
       map.add(heliportLayer);
 
 
+
+      // Create the new airport layer -------------------------------------------
+
+      // Create a renderer for the new airport layer
+      const newAirportRenderer = {
+        "type": "simple",
+        "symbol": {
+          "type": "picture-marker",
+          "url": "star_24dp_EAC452_FILL0_wght400_GRAD0_opsz24.png",
+          "width": "18px",
+          "height": "18px"
+        }
+      }
+
+      // Create a label for the new airport layer
+      const newAirportLabels = {
+        symbol: {
+          type: "text",
+          color: "#FFFFFF",
+          haloColor: "#3639c9",
+          haloSize: "2px",
+          font: {
+            size: "18px",
+            family: "Noto Sans",
+            style: "italic",
+            weight: "normal"
+          }
+        },
+        labelPlacement: "above-center",
+        labelExpressionInfo: {
+          expression: "$feature.AirportCode"
+        }
+      };
+
       // Create the new airport layer
       const newAirports = new FeatureLayer({
         url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/New_Airports/FeatureServer",
+        renderer: newAirportRenderer,
+        labelingInfo: [newAirportLabels],
         outFields: ["AirportCode"],
-        
       });
       
       // Add the new airport layer to the map
