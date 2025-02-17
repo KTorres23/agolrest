@@ -337,10 +337,29 @@
       // Add the new airport layer to the map
       map.add(newAirports);
 
+
+
+      // Add the Editor and Legend widgets --------------------------------------------
+
       // Set the point layer's LayerInfo
-      const pointInfos = {
-        layer: newAirports
-      }
+      const pointInfos = [
+        {
+          layer: airportLayer,
+          label: "Airports"
+        },
+        {
+          layer: heliportLayer,
+          label: "Heliports"
+        },
+        {
+          layer: newAirports,
+          label: "New Airports"
+        },
+        {
+          layer: USAeduLayer,
+          label: "Colleges and Universities"
+        }
+      ];
 
       // Begin Editor constructor
       const editor = new Editor({
@@ -350,7 +369,6 @@
 
       // Add the widget to the view
       view.ui.add(editor, "top-right");
-
 
       // Add legend widget
       const legend = new Legend({
