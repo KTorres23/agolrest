@@ -206,7 +206,7 @@
         outFields: ["INSTNM","INSTSIZE", "CITY", "STABBR", "WEBADDR", "LANDGRNT"],
         popupTemplate: popupEduUSA,
 
-        id: "Colleges and Universities"
+        title: "Colleges and Universities"
       
       });
 
@@ -260,7 +260,7 @@
         renderer: airportRenderer,
         definitionExpression: "Fac_Type = 'AIRPORT'",
         labelingInfo: [airportLabels],
-        id: "Airports"
+        title: "Airports"
       });
 
 
@@ -283,7 +283,7 @@
         renderer: heliportRenderer,
         definitionExpression: "Fac_Type = 'HELIPORT'",
         labelingInfo: [airportLabels],
-        id: "Heliports"
+        title: "Heliports"
       });
 
       airportLayer.load().then(function() {
@@ -336,7 +336,7 @@
         renderer: newAirportRenderer,
         labelingInfo: [newAirportLabels],
         outFields: ["AirportCode"],
-        id: "New Airports"
+        title: "New Airports"
       });
       
       // Add the new airport layer to the map
