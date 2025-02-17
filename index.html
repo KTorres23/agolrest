@@ -347,9 +347,13 @@
       // Add the Editor and Legend widgets --------------------------------------------
 
       // Set the point layer's LayerInfo
-      const pointInfos = {
-        layer: newAirports
-      };
+      const pointInfos = [
+        {layer: newAirports},
+        {
+        layer: graphicsLayer,
+        enabled: false
+        }
+      ];
 
       // Begin Editor constructor
       const editor = new Editor({
@@ -370,7 +374,11 @@
         },
         {
           layer: airportLayer,
-          title: "Airports and Heliports"
+          title: "Airports"
+        },
+        {
+          layer: heliportLayer,
+          title: "Heliports"
         },
         {
           layer: newAirports,
