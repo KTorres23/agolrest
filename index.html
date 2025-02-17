@@ -204,7 +204,9 @@
 
         // Add popup
         outFields: ["INSTNM","INSTSIZE", "CITY", "STABBR", "WEBADDR", "LANDGRNT"],
-        popupTemplate: popupEduUSA
+        popupTemplate: popupEduUSA,
+
+        id: "Colleges and Universities"
       
       });
 
@@ -257,7 +259,8 @@
         url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/US_Airports_KTorres/FeatureServer",
         renderer: airportRenderer,
         definitionExpression: "Fac_Type = 'AIRPORT'",
-        labelingInfo: [airportLabels]
+        labelingInfo: [airportLabels],
+        id: "Airports"
       });
 
 
@@ -279,7 +282,8 @@
         url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/US_Airports_KTorres/FeatureServer",
         renderer: heliportRenderer,
         definitionExpression: "Fac_Type = 'HELIPORT'",
-        labelingInfo: [airportLabels]
+        labelingInfo: [airportLabels],
+        id: "Heliports"
       });
 
       airportLayer.load().then(function() {
@@ -332,6 +336,7 @@
         renderer: newAirportRenderer,
         labelingInfo: [newAirportLabels],
         outFields: ["AirportCode"],
+        id: "New Airports"
       });
       
       // Add the new airport layer to the map
@@ -342,29 +347,14 @@
       // Add the Editor and Legend widgets --------------------------------------------
 
       // Set the point layer's LayerInfo
-      const pointInfos = [
-        {
-          layer: airportLayer,
-          label: "Airports"
-        },
-        {
-          layer: heliportLayer,
-          label: "Heliports"
-        },
-        {
-          layer: newAirports,
-          label: "New Airports"
-        },
-        {
-          layer: USAeduLayer,
-          label: "Colleges and Universities"
-        }
-      ];
+      const pointInfos = {
+        layer: myAirports
+      };
 
       // Begin Editor constructor
       const editor = new Editor({
         view: view,
-        layerInfos: pointInfos
+        layerInfos: [pointInfos]
       }); // End Editor constructor
 
       // Add the widget to the view
